@@ -1,24 +1,25 @@
-package com.example.android.memophile;
-
-/**
- * Created by aditya314 on 2/3/2018.
- */
+package com.example.android.memophile.Like;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.android.memophile.Utils.BottomNavigationViewHelper;
+import com.example.android.memophile.R;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.example.android.memophile.Utils.BottomNavigationViewHelper;
 
-public class SearchActivity extends AppCompatActivity{
-    private static final int ACTIVITY_NUM = 1;
 
-    private Context mContext = SearchActivity.this;
+/**
+ * Created by aditya314 on 2/3/2018.
+ */
+
+public class LikeActivity extends AppCompatActivity{
+    private static final int ACTIVITY_NUM = 3;
+
+    private Context mContext = LikeActivity.this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,4 +40,3 @@ public class SearchActivity extends AppCompatActivity{
         menuItem.setChecked(true);
     }
 }
-

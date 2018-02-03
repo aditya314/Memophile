@@ -6,13 +6,13 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 
-import com.example.android.memophile.HomeActivity;
-import com.example.android.memophile.LikeActivity;
-import com.example.android.memophile.ProfileActivity;
+import com.example.android.memophile.Home.HomeActivity;
+import com.example.android.memophile.Like.LikeActivity;
+import com.example.android.memophile.Profile.ProfileActivity;
 import com.example.android.memophile.R;
 
-import com.example.android.memophile.SearchActivity;
-import com.example.android.memophile.UploadActivity;
+import com.example.android.memophile.Search.SearchActivity;
+import com.example.android.memophile.Upload.UploadActivity;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 /**

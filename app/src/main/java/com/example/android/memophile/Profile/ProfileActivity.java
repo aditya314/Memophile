@@ -1,4 +1,4 @@
-package com.example.android.memophile;
+package com.example.android.memophile.Profile;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.android.memophile.R;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.example.android.memophile.Utils.BottomNavigationViewHelper;
 
@@ -15,10 +16,10 @@ import com.example.android.memophile.Utils.BottomNavigationViewHelper;
  * Created by aditya314 on 2/3/2018.
  */
 
-public class UploadActivity extends AppCompatActivity{
-    private static final int ACTIVITY_NUM = 2;
+public class ProfileActivity extends AppCompatActivity{
+    private static final int ACTIVITY_NUM = 4;
 
-    private Context mContext = UploadActivity.this;
+    private Context mContext = ProfileActivity.this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

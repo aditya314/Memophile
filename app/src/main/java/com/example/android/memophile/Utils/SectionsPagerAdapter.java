@@ -1,4 +1,4 @@
-package com.example.android.memophile.Home;
+package com.example.android.memophile.Utils;
 
 /**
  * Created by aditya314 on 2/3/2018.

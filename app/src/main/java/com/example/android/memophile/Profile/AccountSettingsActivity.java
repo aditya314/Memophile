@@ -2,20 +2,27 @@ package com.example.android.memophile.Profile;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.example.android.memophile.R;
+import com.example.android.memophile.Utils.SectionsStatePagerAdapter;
 
 import java.util.ArrayList;
 
 public class AccountSettingsActivity extends AppCompatActivity {
 
     private Context mContext;
+    private SectionsStatePagerAdapter pagerAdapter;
+    private ViewPager mViewPager;
+    private RelativeLayout mRelativeLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,7 +30,12 @@ public class AccountSettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account_settings);
         mContext = AccountSettingsActivity.this;
 
+        mViewPager = findViewById(R.id.container);
+        mRelativeLayout = findViewById(R.id.relLayout1);
+
+
         setupSettingsList();
+        setupFragments();
 
         //setup the back-arrow for navigating back to "ProfileActivity"
         ImageView backArrow = (ImageView) findViewById(R.id.backArrow);
@@ -35,8 +47,20 @@ public class AccountSettingsActivity extends AppCompatActivity {
         });
     }
 
+    private void setupFragments(){
+        pagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
+        pagerAdapter.addFragment(new EditProfileFragment(), "Edit your profile"); //fragment 0
+        pagerAdapter.addFragment(new SignOutFragment(), "Logout"); //fragment 1
+    }
+
+    private void setViewPager(int fragmentNumber){
+        mRelativeLayout.setVisibility(View.GONE);
+        mViewPager.setAdapter(pagerAdapter);
+        mViewPager.setCurrentItem(fragmentNumber);
+    }
+
     private void setupSettingsList(){
-        ListView listView = (ListView) findViewById(R.id.lvAccountSettings);
+        ListView listView = findViewById(R.id.lvAccountSettings);
 
         ArrayList<String> options = new ArrayList<>();
         options.add("Edit your profile");
@@ -44,6 +68,13 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
         ArrayAdapter adapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, options);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                setViewPager(position);
+            }
+        });
 
     }
 }

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.example.android.memophile.R;
 import com.example.android.memophile.Utils.BottomNavigationViewHelper;
+import com.example.android.memophile.Utils.SectionsPagerAdapter;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class HomeActivity extends AppCompatActivity {

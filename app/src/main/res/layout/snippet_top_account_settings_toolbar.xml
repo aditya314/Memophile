@@ -4,7 +4,7 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#dedede"
+        android:background="@drawable/white_grey_border_bottom"
         >
 
         <android.support.v7.widget.Toolbar
@@ -16,27 +16,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="aditya_nihal_kumar_singh"
-                    android:textSize="20sp"
-                    android:textColor="#000"
-                    android:layout_marginLeft="15dp"
-                    android:id="@+id/profileName"/>
-
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
                     android:layout_centerVertical="true"
-                    android:id="@+id/profileMenu"
-                    android:src="@drawable/ic_settings"/>
+                    android:id="@+id/backArrow"
+                    android:src="@drawable/ic_back_arrow"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp" />
+
+                <TextView
+                    android:layout_toRightOf="@+id/backArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Need a change?"
+                    android:textSize="20sp"
+                    android:textColor="#000"
+                    android:id="@+id/profileName"
+                    android:layout_marginLeft="5dp" />
+
 
 
             </RelativeLayout>
+
 
         </android.support.v7.widget.Toolbar>
 

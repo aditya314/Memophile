@@ -11,7 +11,9 @@ import android.view.MenuItem;
 import com.example.android.memophile.R;
 import com.example.android.memophile.Utils.BottomNavigationViewHelper;
 import com.example.android.memophile.Utils.SectionsPagerAdapter;
+import com.example.android.memophile.Utils.UniversalImageLoader;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -22,12 +24,17 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        initImageLoader();
         setupBottomNavigationView();
         setupViewPager();
     }
 
+    private void initImageLoader(){
+        UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
+        ImageLoader.getInstance().init(universalImageLoader.getConfig());
+    }
 
-     //Responsible for adding the 2 tabs: Home and Messages
+    //Responsible for adding the 2 tabs: Home and Messages
     private void setupViewPager(){
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new HomeFragment()); //index 0

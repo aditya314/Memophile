@@ -40,7 +40,7 @@ public class GridImageAdapter extends ArrayAdapter<String> {
     }
 
     private static class ViewHolder{
-        ImageView image;
+        SquareImageView image;
         ProgressBar mProgressBar;
     }
 

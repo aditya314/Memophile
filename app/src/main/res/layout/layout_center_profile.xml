@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:horizontalSpacing="1dp"
-                    android:numColumns="3"
+                    android:numColumns="2"
                     android:stretchMode="columnWidth"
                     android:verticalSpacing="1dp">
 

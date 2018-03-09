@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1027723581345",
+    "firebase_url": "https://memophile-d291b.firebaseio.com",
+    "project_id": "memophile-d291b",
+    "storage_bucket": "memophile-d291b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027723581345:android:94287c7d071c2844",
+        "android_client_info": {
+          "package_name": "com.example.android.memophile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027723581345-huu8cpkf45dug9r4mbfrenb08ji5urej.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.memophile",
+            "certificate_hash": "218026fbbb85c73634e84b3aeaea7f8bdaf4f787"
+          }
+        },
+        {
+          "client_id": "1027723581345-bon24uppmbnu1q216ppmr9lnhsseepar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUNN6Z0UIuXEBO1JZXkvCk8y8ImutL92A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027723581345-bon24uppmbnu1q216ppmr9lnhsseepar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

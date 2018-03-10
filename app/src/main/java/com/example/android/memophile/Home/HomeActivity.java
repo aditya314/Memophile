@@ -104,10 +104,10 @@ public class HomeActivity extends AppCompatActivity {
 
                 if (user != null) {
                     // User is signed in
-                    Toast.makeText(mContext,"Signed in:" + user.getUid(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext,"You are signed in!", Toast.LENGTH_SHORT).show();
                 } else {
                     // User is signed out
-                    Toast.makeText(mContext, "Signed out", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "You are signed out!", Toast.LENGTH_SHORT).show();
                 }
                 // ...
             }

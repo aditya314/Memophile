@@ -1,6 +1,7 @@
 package com.example.android.memophile.Login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.memophile.Home.HomeActivity;
 import com.example.android.memophile.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -109,6 +111,24 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+        TextView linkSignUp = (TextView) findViewById(R.id.link_signup);
+        linkSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+         /*
+         If the user is logged in then navigate to HomeActivity and call 'finish()'
+          */
+        if(mAuth.getCurrentUser() != null){
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     /**

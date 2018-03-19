@@ -1,6 +1,7 @@
 package com.example.android.memophile.Profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +42,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         setupSettingsList();
         setupBottomNavigationView();
         setupFragments();
+        getIncomingIntent();
 
         //setup the back-arrow for navigating back to "ProfileActivity"
         ImageView backArrow = (ImageView) findViewById(R.id.backArrow);
@@ -52,10 +54,18 @@ public class AccountSettingsActivity extends AppCompatActivity {
         });
     }
 
+    private void getIncomingIntent(){
+        Intent intent = getIntent();
+
+        if(intent.hasExtra(getString(R.string.calling_activity))){
+            setViewPager(pagerAdapter.getFragmentNumber(getString(R.string.edit_profile_fragment)));
+        }
+    }
+
     private void setupFragments(){
         pagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
-        pagerAdapter.addFragment(new EditProfileFragment(), "Edit your profile"); //fragment 0
-        pagerAdapter.addFragment(new SignOutFragment(), "Logout"); //fragment 1
+        pagerAdapter.addFragment(new EditProfileFragment(),getString(R.string.edit_profile_fragment)); //fragment 0
+        pagerAdapter.addFragment(new SignOutFragment(),getString(R.string.sign_out_fragment)); //fragment 1
     }
 
     private void setViewPager(int fragmentNumber){

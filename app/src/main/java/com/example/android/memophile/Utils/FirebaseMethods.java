@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.example.android.memophile.Models.User;
 import com.example.android.memophile.Models.UserAccountSettings;
+import com.example.android.memophile.Models.UserSettings;
 import com.example.android.memophile.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -121,13 +122,107 @@ public class FirebaseMethods {
                 0,
                 0,
                 profile_photo,
-                username,
+                StringManipulation.condenseUsername(username),
                 website
         );
 
         myRef.child(mContext.getString(R.string.dbname_user_account_settings))
                 .child(userID)
                 .setValue(settings);
+
+    }
+
+    /**
+     * Retrieves the account settings for teh user currently logged in
+     * Database: user_acount_Settings node
+     * @param dataSnapshot
+     * @return
+     */
+    private UserSettings getUserAccountSettings(DataSnapshot dataSnapshot){
+
+        UserAccountSettings settings  = new UserAccountSettings();
+        User user = new User();
+
+        for(DataSnapshot ds: dataSnapshot.getChildren()){
+
+            // user_account_settings node
+            if(ds.getKey().equals(mContext.getString(R.string.dbname_user_account_settings))){
+
+                try{
+
+                    settings.setDisplay_name(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getDisplay_name()
+                    );
+                    settings.setUsername(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getUsername()
+                    );
+                    settings.setWebsite(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getWebsite()
+                    );
+                    settings.setDescription(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getDescription()
+                    );
+                    settings.setProfile_photo(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getProfile_photo()
+                    );
+                    settings.setPosts(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getPosts()
+                    );
+                    settings.setFollowing(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getFollowing()
+                    );
+                    settings.setFollowers(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getFollowers()
+                    );
+
+                }catch (NullPointerException e){
+
+                }
+            }
+
+            // users node
+            if(ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
+
+                user.setUsername(
+                        ds.child(userID)
+                                .getValue(User.class)
+                                .getUsername()
+                );
+                user.setEmail(
+                        ds.child(userID)
+                                .getValue(User.class)
+                                .getEmail()
+                );
+                user.setPhone_number(
+                        ds.child(userID)
+                                .getValue(User.class)
+                                .getPhone_number()
+                );
+                user.setUser_id(
+                        ds.child(userID)
+                                .getValue(User.class)
+                                .getUser_id()
+                );
+
+            }
+        }
+        return new UserSettings(user, settings);
 
     }
 

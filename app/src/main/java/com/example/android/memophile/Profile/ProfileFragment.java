@@ -17,8 +17,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.android.memophile.Models.UserAccountSettings;
+import com.example.android.memophile.Models.UserSettings;
 import com.example.android.memophile.R;
 import com.example.android.memophile.Utils.BottomNavigationViewHelper;
+import com.example.android.memophile.Utils.FirebaseMethods;
+import com.example.android.memophile.Utils.UniversalImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,6 +55,8 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
+    private FirebaseMethods mFirebaseMethods;
+
 
     @Nullable
     @Override
@@ -70,13 +76,31 @@ public class ProfileFragment extends Fragment {
         profileMenu =  view.findViewById(R.id.profileMenu);
         bottomNavigationView =  view.findViewById(R.id.bottomNavViewBar);
         mContext = getActivity();
+        mFirebaseMethods = new FirebaseMethods(mContext);
 
         setupBottomNavigationView();
         setupToolbar();
+        setupFirebaseAuth();
 
         return view;
     }
 
+    private void setProfileWidgets(UserSettings userSettings){
+
+        //User user = userSettings.getUser();
+        UserAccountSettings settings = userSettings.getSettings();
+
+        UniversalImageLoader.setImage(settings.getProfile_photo(), mProfilePhoto, null, "");
+
+        mDisplayName.setText(settings.getDisplay_name());
+        mUsername.setText(settings.getUsername());
+        mWebsite.setText(settings.getWebsite());
+        mDescription.setText(settings.getDescription());
+        mPosts.setText(String.valueOf(settings.getPosts()));
+        mFollowing.setText(String.valueOf(settings.getFollowing()));
+        mFollowers.setText(String.valueOf(settings.getFollowers()));
+        mProgressBar.setVisibility(View.GONE);
+    }
 
     /**
      * Responsible for setting up the profile toolbar
@@ -141,7 +165,7 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 //retrieve user information from the database
-
+                setProfileWidgets(mFirebaseMethods.getUserSettings(dataSnapshot));
 
                 //retrieve images for the user in question
 

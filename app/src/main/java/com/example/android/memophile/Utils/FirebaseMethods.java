@@ -138,7 +138,7 @@ public class FirebaseMethods {
      * @param dataSnapshot
      * @return
      */
-    private UserSettings getUserAccountSettings(DataSnapshot dataSnapshot){
+    public UserSettings getUserSettings(DataSnapshot dataSnapshot){
 
         UserAccountSettings settings  = new UserAccountSettings();
         User user = new User();

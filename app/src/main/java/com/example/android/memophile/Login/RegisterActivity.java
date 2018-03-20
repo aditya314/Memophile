@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.android.memophile.R;
 import com.example.android.memophile.Utils.FirebaseMethods;
+import com.example.android.memophile.Utils.StringManipulation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -169,7 +170,7 @@ public class RegisterActivity extends AppCompatActivity {
                     myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            checkIfUsernameExists(username);
+                            checkIfUsernameExists(StringManipulation.condenseUsername(username));
                         }
 
                         @Override

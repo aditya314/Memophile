@@ -134,7 +134,7 @@ public class FirebaseMethods {
      */
     public void addNewUser(String email, String username, String description, String website, String profile_photo){
 
-        User user = new User( userID,  1,  email,  StringManipulation.condenseUsername(username) );
+        User user = new User( userID,  1,  email,  username );
 
         myRef.child(mContext.getString(R.string.dbname_users))
                 .child(userID)
@@ -143,12 +143,12 @@ public class FirebaseMethods {
 
         UserAccountSettings settings = new UserAccountSettings(
                 description,
-                username,
+                StringManipulation.expandUsername(username),
                 0,
                 0,
                 0,
                 profile_photo,
-                StringManipulation.condenseUsername(username),
+                username,
                 website
         );
 

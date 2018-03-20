@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -82,12 +83,12 @@ public class RegisterActivity extends AppCompatActivity {
      * Initialize the activity widgets
      */
     private void initWidgets(){
-        mEmail = findViewById(R.id.input_email);
-        mUsername =  findViewById(R.id.input_username);
-        btnRegister =  findViewById(R.id.btn_register);
-        mProgressBar =  findViewById(R.id.progressBar);
-        loadingPleaseWait = findViewById(R.id.loadingPleaseWait);
-        mPassword = findViewById(R.id.input_password);
+        mEmail = (EditText) findViewById(R.id.input_email);
+        mUsername = (EditText) findViewById(R.id.input_username);
+        btnRegister = (Button) findViewById(R.id.btn_register);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        loadingPleaseWait = (TextView) findViewById(R.id.loadingPleaseWait);
+        mPassword = (EditText) findViewById(R.id.input_password);
         mContext = RegisterActivity.this;
         mProgressBar.setVisibility(View.GONE);
         loadingPleaseWait.setVisibility(View.GONE);
@@ -109,6 +110,46 @@ public class RegisterActivity extends AppCompatActivity {
      */
 
     /**
+     * Check is @param username already exists in teh database
+     * @param username
+     */
+    private void checkIfUsernameExists(final String username) {
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        Query query = reference
+                .child(getString(R.string.dbname_users))
+                .orderByChild(getString(R.string.field_username))
+                .equalTo(username);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot singleSnapshot: dataSnapshot.getChildren()){
+                    if (singleSnapshot.exists()){
+                        append = myRef.push().getKey().substring(3,10);
+
+                    }
+                }
+
+                String mUsername = "";
+                mUsername = username + append;
+
+                //add new user to the database
+                firebaseMethods.addNewUser(email, mUsername, "", "", "");
+
+                Toast.makeText(mContext, "Signup successful. Sending verification email.", Toast.LENGTH_SHORT).show();
+
+                mAuth.signOut();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    /**
      * Setup the firebase auth object
      */
     private void setupFirebaseAuth(){
@@ -128,17 +169,7 @@ public class RegisterActivity extends AppCompatActivity {
                     myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            //1st check: Make sure the username is not already in use
-                            if(firebaseMethods.checkIfUsernameExists(username, dataSnapshot)){
-                                append = myRef.push().getKey().substring(3,10);
-                            }
-                            username = username + append;
-
-                            //add new user to the database
-                            firebaseMethods.addNewUser(email, username, "", "", "");
-
-                            Toast.makeText(mContext, "Signup successful. Sending verification email.", Toast.LENGTH_SHORT).show();
-                            mAuth.signOut();
+                            checkIfUsernameExists(username);
                         }
 
                         @Override
@@ -146,10 +177,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                         }
                     });
+
                     finish();
 
                 } else {
                     // User is signed out
+
                 }
                 // ...
             }

@@ -43,20 +43,37 @@ public class FirebaseMethods {
         }
     }
 
-    public boolean checkIfUsernameExists(String username, DataSnapshot datasnapshot){
+    public void updateUsername(String username){
 
-        User user = new User();
+        myRef.child(mContext.getString(R.string.dbname_users))
+                .child(userID)
+                .child(mContext.getString(R.string.field_username))
+                .setValue(username);
 
-        for (DataSnapshot ds: datasnapshot.child(userID).getChildren()){
-
-            user.setUsername(ds.getValue(User.class).getUsername());
-
-            if(StringManipulation.expandUsername(user.getUsername()).equals(username)){
-                return true;
-            }
-        }
-        return false;
+        myRef.child(mContext.getString(R.string.dbname_user_account_settings))
+                .child(userID)
+                .child(mContext.getString(R.string.field_username))
+                .setValue(username);
     }
+
+//    public boolean checkIfUsernameExists(String username, DataSnapshot datasnapshot){
+//        Log.d(TAG, "checkIfUsernameExists: checking if " + username + " already exists.");
+//
+//        User user = new User();
+//
+//        for (DataSnapshot ds: datasnapshot.child(userID).getChildren()){
+//            Log.d(TAG, "checkIfUsernameExists: datasnapshot: " + ds);
+//
+//            user.setUsername(ds.getValue(User.class).getUsername());
+//            Log.d(TAG, "checkIfUsernameExists: username: " + user.getUsername());
+//
+//            if(StringManipulation.expandUsername(user.getUsername()).equals(username)){
+//                Log.d(TAG, "checkIfUsernameExists: FOUND A MATCH: " + user.getUsername());
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     /**
      * Register a new email and password to Firebase Authentication
@@ -74,12 +91,13 @@ public class FirebaseMethods {
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Toast.makeText(mContext, "Registration failed",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "Authentication Failed!!", Toast.LENGTH_SHORT).show();
 
                         }
                         else if(task.isSuccessful()){
+                            //send verificaton email
                             sendVerificationEmail();
+
                             userID = mAuth.getCurrentUser().getUid();
                         }
 
@@ -98,14 +116,22 @@ public class FirebaseMethods {
                             if(task.isSuccessful()){
 
                             }else{
-                                Toast.makeText(mContext, "Couldn't send verification email.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, "couldn't send verification email.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         }
     }
 
-
+    /**
+     * Add information to the users nodes
+     * Add information to the user_account_settings node
+     * @param email
+     * @param username
+     * @param description
+     * @param website
+     * @param profile_photo
+     */
     public void addNewUser(String email, String username, String description, String website, String profile_photo){
 
         User user = new User( userID,  1,  email,  StringManipulation.condenseUsername(username) );
@@ -132,6 +158,7 @@ public class FirebaseMethods {
 
     }
 
+
     /**
      * Retrieves the account settings for teh user currently logged in
      * Database: user_acount_Settings node
@@ -146,9 +173,9 @@ public class FirebaseMethods {
         for(DataSnapshot ds: dataSnapshot.getChildren()){
 
             // user_account_settings node
-            if(ds.getKey().equals(mContext.getString(R.string.dbname_user_account_settings))){
+            if(ds.getKey().equals(mContext.getString(R.string.dbname_user_account_settings))) {
 
-                try{
+                try {
 
                     settings.setDisplay_name(
                             ds.child(userID)
@@ -191,10 +218,12 @@ public class FirebaseMethods {
                                     .getFollowers()
                     );
 
-                }catch (NullPointerException e){
+
+                } catch (NullPointerException e) {
 
                 }
             }
+
 
             // users node
             if(ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
@@ -225,5 +254,4 @@ public class FirebaseMethods {
         return new UserSettings(user, settings);
 
     }
-
 }

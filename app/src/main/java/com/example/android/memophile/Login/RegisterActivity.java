@@ -127,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 for(DataSnapshot singleSnapshot: dataSnapshot.getChildren()){
                     if (singleSnapshot.exists()){
-                        append = myRef.push().getKey().substring(3,10);
+                        append = myRef.push().getKey().substring(2,8);
 
                     }
                 }

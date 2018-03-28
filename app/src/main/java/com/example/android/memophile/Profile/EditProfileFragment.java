@@ -106,29 +106,15 @@ public class EditProfileFragment extends Fragment {
         final String email = mEmail.getText().toString();
         final long phoneNumber = Long.parseLong(mPhoneNumber.getText().toString());
 
+        //case1: the user change their username
+        if(!mUserSettings.getUser().getUsername().equals(username)){
 
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-
-                //case1: the user did not change their username
-                if(!mUserSettings.getUser().getUsername().equals(username)){
-
-                    checkIfUsernameExists(username);
-                }
-                //case2: the user changed their username therefore we need to check for uniqueness
-                else{
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+            checkIfUsernameExists(username);
+        }
+        //case2: the user changed their email
+        else if(!mUserSettings.getUser().getEmail().equals(email)){
+            Toast.makeText(getActivity(), "Change of email is not allowed!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

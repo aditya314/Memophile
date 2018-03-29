@@ -1,5 +1,6 @@
 package com.example.android.memophile.Upload;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -42,6 +43,7 @@ public class GalleryFragment extends Fragment {
     //vars
     private ArrayList<String> directories;
     private String mAppend = "file:/";
+    private String mSelectedImage;
 
     @Nullable
     @Override
@@ -66,7 +68,9 @@ public class GalleryFragment extends Fragment {
         nextScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), NextActivity.class);
+                intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+                startActivity(intent);
             }
         });
         init();
@@ -81,10 +85,18 @@ public class GalleryFragment extends Fragment {
             directories = FileSearch.getDirectoryPaths(filePaths.PICTURES);
         }
 
+        ArrayList<String> directoryNames = new ArrayList<>();
+        for(int i = 0; i < directories.size(); i++){
+
+            int index = directories.get(i).lastIndexOf("/");
+            String string = directories.get(i).substring(index+1);
+            directoryNames.add(string);
+        }
+
         directories.add(filePaths.CAMERA);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_spinner_item, directories);
+                android.R.layout.simple_spinner_item, directoryNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         directorySpinner.setAdapter(adapter);
 
@@ -117,18 +129,23 @@ public class GalleryFragment extends Fragment {
         if(imgURLs.size()==0){
             Toast.makeText(getActivity(), "Could not find any image", Toast.LENGTH_LONG).show();
         }
-        else{
+        else {
             //set the first image to be displayed when the activity fragment view is inflated
             setImage(imgURLs.get(0), galleryImage, mAppend);
+
+
+            mSelectedImage = imgURLs.get(0);
+
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    setImage(imgURLs.get(position), galleryImage, mAppend);
+                    mSelectedImage = imgURLs.get(position);
+
+                }
+            });
         }
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                setImage(imgURLs.get(position), galleryImage, mAppend);
-            }
-        });
     }
 
     private void setImage(String imgURL, ImageView image, String append){

@@ -3,8 +3,8 @@
     package="com.example.android.memophile">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -26,7 +26,8 @@
         <activity android:name=".Upload.UploadActivity" />
         <activity android:name=".Profile.AccountSettingsActivity" />
         <activity android:name=".Login.LoginActivity" />
-        <activity android:name=".Login.RegisterActivity"></activity>
+        <activity android:name=".Login.RegisterActivity" />
+        <activity android:name=".Upload.NextActivity"></activity>
     </application>
 
 </manifest>

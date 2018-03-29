@@ -18,6 +18,7 @@
 
     <!-- strings -->
     <string name="gallery">GALLERY</string>
+    <string name="string_next">Next</string>
 
     <!-- Intent Extras -->
     <string name="calling_activity">calling_activity</string>

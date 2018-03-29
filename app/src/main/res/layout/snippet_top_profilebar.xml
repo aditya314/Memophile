@@ -20,7 +20,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="aditya_nihal_kumar_singh"
+                    android:text="user_name"
                     android:textSize="20sp"
                     android:textColor="#000"
                     android:layout_marginLeft="15dp"

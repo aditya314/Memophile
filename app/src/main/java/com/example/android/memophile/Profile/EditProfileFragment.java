@@ -59,14 +59,14 @@ public class EditProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
-        mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
-        mDisplayName = (EditText) view.findViewById(R.id.display_name);
-        mUsername = (EditText) view.findViewById(R.id.username);
-        mWebsite = (EditText) view.findViewById(R.id.website);
-        mDescription = (EditText) view.findViewById(R.id.description);
-        mEmail = (EditText) view.findViewById(R.id.email);
-        mPhoneNumber = (EditText) view.findViewById(R.id.phoneNumber);
-        mChangeProfilePhoto = (TextView) view.findViewById(R.id.changeProfilePhoto);
+        mProfilePhoto =  view.findViewById(R.id.profile_photo);
+        mDisplayName =  view.findViewById(R.id.display_name);
+        mUsername =  view.findViewById(R.id.username);
+        mWebsite =  view.findViewById(R.id.website);
+        mDescription = view.findViewById(R.id.description);
+        mEmail = view.findViewById(R.id.email);
+        mPhoneNumber = view.findViewById(R.id.phoneNumber);
+        mChangeProfilePhoto = view.findViewById(R.id.changeProfilePhoto);
         mFirebaseMethods = new FirebaseMethods(getActivity());
 
 
@@ -112,8 +112,25 @@ public class EditProfileFragment extends Fragment {
             checkIfUsernameExists(username);
         }
         //case2: the user changed their email
-        else if(!mUserSettings.getUser().getEmail().equals(email)){
+        if(!mUserSettings.getUser().getEmail().equals(email)){
             Toast.makeText(getActivity(), "Change of email is not allowed!", Toast.LENGTH_SHORT).show();
+        }
+
+        if(!mUserSettings.getSettings().getDisplay_name().equals(displayName)){
+            //update displayname
+            mFirebaseMethods.updateUserAccountSettings(displayName, null, null, 0);
+        }
+        if(!mUserSettings.getSettings().getWebsite().equals(website)){
+            //update website
+            mFirebaseMethods.updateUserAccountSettings(null, website, null, 0);
+        }
+        if(!mUserSettings.getSettings().getDescription().equals(description)){
+            //update description
+            mFirebaseMethods.updateUserAccountSettings(null, null, description, 0);
+        }
+        if(!mUserSettings.getSettings().getProfile_photo().equals(phoneNumber)){
+            //update phoneNumber
+            mFirebaseMethods.updateUserAccountSettings(null, null, null, phoneNumber);
         }
 
     }

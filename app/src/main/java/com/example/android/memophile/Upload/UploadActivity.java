@@ -4,13 +4,16 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.android.memophile.R;
 import com.example.android.memophile.Utils.Permissions;
+import com.example.android.memophile.Utils.SectionsPagerAdapter;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.example.android.memophile.Utils.BottomNavigationViewHelper;
 
@@ -24,19 +27,34 @@ public class UploadActivity extends AppCompatActivity{
     private static final int ACTIVITY_NUM = 2;
     private static final int VERIFY_PERMISSIONS_REQUEST = 1;
 
+    private ViewPager mViewPager;
+
     private Context mContext = UploadActivity.this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_upload);
         if(checkPermissionsArray(Permissions.PERMISSIONS)){
-
+            setupViewPager();
         }else{
             verifyPermissions(Permissions.PERMISSIONS);
         }
 
         //setupBottomNavigationView();
+    }
+
+    private void setupViewPager(){
+        SectionsPagerAdapter adapter =  new SectionsPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new GalleryFragment());
+
+        mViewPager = findViewById(R.id.container);
+        mViewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = findViewById(R.id.tabsBottom);
+        tabLayout.setupWithViewPager(mViewPager);
+
+        tabLayout.getTabAt(0).setText(getString(R.string.gallery));
     }
 
     public void verifyPermissions(String[] permissions){

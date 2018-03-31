@@ -1,10 +1,13 @@
 package com.example.android.memophile.Utils;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by aditya314 on 3/30/2018.
  */
 
-public class Photo {
+public class Photo implements Parcelable {
     private String caption;
     private String date_created;
     private String image_path;
@@ -84,5 +87,15 @@ public class Photo {
                 ", user_id='" + user_id + '\'' +
                 ", tags='" + tags + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

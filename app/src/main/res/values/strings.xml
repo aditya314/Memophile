@@ -5,6 +5,7 @@
     <string name="edit_profile_fragment">Edit Profile</string>
     <string name="sign_out_fragment">Sign Out</string>
     <string name="profile_fragment">Profile</string>
+    <string name="view_post_fragment">View Post</string>
 
     <!-- Firebase database fields -->
     <string name="dbname_users">users</string>
@@ -26,11 +27,16 @@
     <string name="gallery">GALLERY</string>
     <string name="string_next">Next</string>
     <string name="string_share">Share</string>
+    <string name="photo">PHOTO</string>
 
     <!-- Intent Extras -->
     <string name="calling_activity">calling_activity</string>
     <string name="selected_image">selected_image</string>
     <string name="return_to_fragment">return_to_fragment</string>
+
+    <!-- Bundle arg names -->
+    <string name="activity_number">activity_number</string>
+
 
     <!-- activity names -->
     <string name="profile_activity">Profile Activity</string>

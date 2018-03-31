@@ -11,6 +11,7 @@ import com.example.android.memophile.Home.HomeActivity;
 import com.example.android.memophile.Models.User;
 import com.example.android.memophile.Models.UserAccountSettings;
 import com.example.android.memophile.Models.UserSettings;
+import com.example.android.memophile.Profile.AccountSettingsActivity;
 import com.example.android.memophile.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -108,6 +109,12 @@ public class FirebaseMethods {
         }
         //case new profile photo
         else if(photoType.equals(mContext.getString(R.string.profile_photo))){
+
+            ((AccountSettingsActivity)mContext).setViewPager(
+                    ((AccountSettingsActivity)mContext).pagerAdapter
+                            .getFragmentNumber(mContext.getString(R.string.edit_profile_fragment))
+            );
+
             String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
             StorageReference storageReference = mStorageReference
                     .child(filePaths.FIREBASE_IMAGE_STORAGE + "/" + user_id + "/profile_photo");

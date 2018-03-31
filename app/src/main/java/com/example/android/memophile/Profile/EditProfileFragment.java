@@ -1,5 +1,6 @@
 package com.example.android.memophile.Profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.example.android.memophile.Models.User;
 import com.example.android.memophile.Models.UserAccountSettings;
 import com.example.android.memophile.Models.UserSettings;
 import com.example.android.memophile.R;
+import com.example.android.memophile.Upload.UploadActivity;
 import com.example.android.memophile.Utils.FirebaseMethods;
 import com.example.android.memophile.Utils.UniversalImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
@@ -183,7 +185,14 @@ public class EditProfileFragment extends Fragment {
         mEmail.setText(userSettings.getUser().getEmail());
         mPhoneNumber.setText(String.valueOf(userSettings.getUser().getPhone_number()));
 
-
+        mChangeProfilePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), UploadActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //268435456
+                getActivity().startActivity(intent);
+            }
+        });
     }
        /*
     ------------------------------------ Firebase ---------------------------------------------

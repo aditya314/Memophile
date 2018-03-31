@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.memophile.Profile.AccountSettingsActivity;
 import com.example.android.memophile.R;
 import com.example.android.memophile.Utils.FilePaths;
 import com.example.android.memophile.Utils.FileSearch;
@@ -64,17 +65,37 @@ public class GalleryFragment extends Fragment {
         });
 
 
-        TextView nextScreen = view.findViewById(R.id.tvNext);
+        TextView nextScreen = (TextView) view.findViewById(R.id.tvNext);
         nextScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NextActivity.class);
-                intent.putExtra(getString(R.string.selected_image), mSelectedImage);
-                startActivity(intent);
+
+                if(isRootTask()){
+                    Intent intent = new Intent(getActivity(), NextActivity.class);
+                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(getActivity(), AccountSettingsActivity.class);
+                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+                    intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile_fragment));
+                    startActivity(intent);
+                }
+
             }
         });
+
         init();
+
         return view;
+    }
+
+    private boolean isRootTask(){
+        if(((UploadActivity)getActivity()).getTask() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     private void init() {

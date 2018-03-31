@@ -57,6 +57,10 @@ public class UploadActivity extends AppCompatActivity{
         tabLayout.getTabAt(0).setText(getString(R.string.gallery));
     }
 
+    public int getTask(){
+        return getIntent().getFlags();
+    }
+
     public void verifyPermissions(String[] permissions){
 
         ActivityCompat.requestPermissions(

@@ -1,28 +1,16 @@
 package com.example.android.memophile.Profile;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.android.memophile.R;
-import com.example.android.memophile.Utils.GridImageAdapter;
 import com.example.android.memophile.Utils.Photo;
-import com.example.android.memophile.Utils.UniversalImageLoader;
-import com.example.android.memophile.ViewPostFragment;
-import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import com.example.android.memophile.Utils.BottomNavigationViewHelper;
-
-import java.util.ArrayList;
+import com.example.android.memophile.Utils.ViewPostFragment;
 
 
 /**

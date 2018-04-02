@@ -1,18 +1,21 @@
-package com.example.android.memophile;
+package com.example.android.memophile.Utils;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.memophile.Models.UserAccountSettings;
+import com.example.android.memophile.R;
 import com.example.android.memophile.Utils.BottomNavigationViewHelper;
 import com.example.android.memophile.Utils.FirebaseMethods;
 import com.example.android.memophile.Utils.Photo;
@@ -66,6 +69,8 @@ public class ViewPostFragment extends Fragment {
     private String photoUsername = "";
     private String profilePhotoUrl = "";
     private UserAccountSettings mUserAccountSettings;
+    private GestureDetector mGestureDetector;
+    private Heart mHeart;
 
     @Nullable
     @Override
@@ -83,6 +88,11 @@ public class ViewPostFragment extends Fragment {
         mHeartWhite = (ImageView) view.findViewById(R.id.image_heart);
         mProfileImage = (ImageView) view.findViewById(R.id.profile_photo);
 
+        mHeartRed.setVisibility(View.GONE);
+        mHeartWhite.setVisibility(View.VISIBLE);
+        mHeart = new Heart(mHeartWhite, mHeartRed);
+        mGestureDetector = new GestureDetector(getActivity(), new GestureListener());
+
         try{
             mPhoto = getPhotoFromBundle();
             UniversalImageLoader.setImage(mPhoto.getImage_path(), mPostImage, null, "");
@@ -96,7 +106,39 @@ public class ViewPostFragment extends Fragment {
         setupBottomNavigationView();
         getPhotoDetails();
 
+        testToggle();
+
         return view;
+    }
+
+    private void testToggle(){
+        mHeartRed.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return mGestureDetector.onTouchEvent(event);
+            }
+        });
+        mHeartWhite.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return mGestureDetector.onTouchEvent(event);
+            }
+        });
+    }
+
+    public class GestureListener extends GestureDetector.SimpleOnGestureListener{
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+
+            mHeart.toggleLike();
+
+            return true;
+        }
     }
 
     private void getPhotoDetails(){

@@ -16,6 +16,13 @@ import com.example.android.memophile.Utils.Photo;
 import com.example.android.memophile.Utils.UniversalImageLoader;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
 /**
  * Created by aditya314 on 3/31/2018.
  */
@@ -63,7 +70,7 @@ public class ViewPostFragment extends Fragment {
         }
 
         setupBottomNavigationView();
-
+        setupWidgets();
         return view;
     }
 
@@ -93,6 +100,38 @@ public class ViewPostFragment extends Fragment {
         }else{
             return null;
         }
+    }
+
+    private void setupWidgets(){
+        String timestampDiff = getTimestampDifference();
+        if(!timestampDiff.equals("0")){
+            mTimestamp.setText(timestampDiff + " DAYS AGO");
+        }else{
+            mTimestamp.setText("TODAY");
+        }
+    }
+
+    /**
+     * Returns a string representing the number of days ago the post was made
+     * @return
+     */
+    private String getTimestampDifference(){
+
+        String difference = "";
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.UK);
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Calcutta"));//google 'android list of timezones'
+        Date today = c.getTime();
+        sdf.format(today);
+        Date timestamp;
+        final String photoTimestamp = mPhoto.getDate_created();
+        try{
+            timestamp = sdf.parse(photoTimestamp);
+            difference = String.valueOf(Math.round(((today.getTime() - timestamp.getTime()) / 1000 / 60 / 60 / 24 )));
+        }catch (ParseException e){
+            difference = "0";
+        }
+        return difference;
     }
 
     /**

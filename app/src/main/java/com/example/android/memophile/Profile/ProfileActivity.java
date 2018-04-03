@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.android.memophile.R;
-import com.example.android.memophile.Utils.Photo;
+import com.example.android.memophile.Models.Photo;
 import com.example.android.memophile.Utils.ViewPostFragment;
 
 

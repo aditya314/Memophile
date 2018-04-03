@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.example.android.memophile.Home.HomeActivity;
+import com.example.android.memophile.Models.Photo;
 import com.example.android.memophile.Models.User;
 import com.example.android.memophile.Models.UserAccountSettings;
 import com.example.android.memophile.Models.UserSettings;

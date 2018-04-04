@@ -46,19 +46,17 @@ public class HomeActivity extends AppCompatActivity {
         ImageLoader.getInstance().init(universalImageLoader.getConfig());
     }
 
-    //Responsible for adding the 2 tabs: Home and Messages
+    //Responsible for adding the 1 tab: Home
     private void setupViewPager(){
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new HomeFragment()); //index 0
-        adapter.addFragment(new MessagesFragment()); //index 1
         ViewPager viewPager = findViewById(R.id.container);
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_action_name);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_messages);
+        tabLayout.getTabAt(0).setText("Memophile : Your Meme Network");
     }
 
     /**

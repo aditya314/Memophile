@@ -47,7 +47,7 @@
                 android:layout_marginLeft="5dp"
                 android:textColor="#000"
                 android:textSize="18sp"
-                android:layout_toRightOf="@+id/comment_username"
+                android:layout_below="@+id/comment_username"
                 android:id="@+id/comment"/>
 
 

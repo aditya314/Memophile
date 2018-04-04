@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 
 import com.example.android.memophile.R;
 import com.example.android.memophile.Models.Photo;
+import com.example.android.memophile.Utils.ViewCommentsFragment;
 import com.example.android.memophile.Utils.ViewPostFragment;
 
 
@@ -17,7 +18,23 @@ import com.example.android.memophile.Utils.ViewPostFragment;
  * Created by aditya314 on 2/3/2018.
  */
 
-public class ProfileActivity extends AppCompatActivity implements ProfileFragment.OnGridImageSelectedListener{
+public class ProfileActivity extends AppCompatActivity
+        implements ProfileFragment.OnGridImageSelectedListener,
+        ViewPostFragment.OnCommentThreadSelectedListener{
+
+    @Override
+    public void onCommentThreadSelectedListener(Photo photo) {
+        ViewCommentsFragment fragment = new ViewCommentsFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(getString(R.string.photo), photo);
+        fragment.setArguments(args);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(getString(R.string.view_comments_fragment));
+        transaction.commit();
+    }
+
     private static final int ACTIVITY_NUM = 4;
     private static final int NUM_GRID_COLUMNS = 2;
 
@@ -55,4 +72,5 @@ public class ProfileActivity extends AppCompatActivity implements ProfileFragmen
         transaction.addToBackStack(getString(R.string.view_post_fragment));
         transaction.commit();
     }
+
 }

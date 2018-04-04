@@ -35,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity
         transaction.commit();
     }
 
-    private static final int ACTIVITY_NUM = 4;
+    private static final int ACTIVITY_NUM = 3;
     private static final int NUM_GRID_COLUMNS = 2;
 
     private Context mContext = ProfileActivity.this;

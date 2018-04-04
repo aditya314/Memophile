@@ -7,7 +7,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 
 import com.example.android.memophile.Home.HomeActivity;
-import com.example.android.memophile.Like.LikeActivity;
 import com.example.android.memophile.Profile.ProfileActivity;
 import com.example.android.memophile.R;
 
@@ -46,11 +45,6 @@ public class BottomNavigationViewHelper {
                     case R.id.ic_upload:
                         Intent intent3 = new Intent(context, UploadActivity.class);//ACTIVITY_NUM = 2
                         context.startActivity(intent3);
-                        break;
-
-                    case R.id.ic_alert:
-                        Intent intent4 = new Intent(context, LikeActivity.class);//ACTIVITY_NUM = 3
-                        context.startActivity(intent4);
                         break;
 
                     case R.id.ic_profile:

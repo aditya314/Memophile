@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class AccountSettingsActivity extends AppCompatActivity {
 
-    private static final int ACTIVITY_NUM = 4;
+    private static final int ACTIVITY_NUM = 3;
     private Context mContext;
     public SectionsStatePagerAdapter pagerAdapter;
     private ViewPager mViewPager;

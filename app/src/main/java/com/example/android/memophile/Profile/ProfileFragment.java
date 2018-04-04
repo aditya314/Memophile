@@ -55,7 +55,7 @@ public class ProfileFragment extends Fragment {
     }
     OnGridImageSelectedListener mOnGridImageSelectedListener;
 
-    private static final int ACTIVITY_NUM = 4;
+    private static final int ACTIVITY_NUM = 3;
     private static final int NUM_GRID_COLUMNS = 2;
 
     private TextView mPosts, mFollowers, mFollowing, mDisplayName, mUsername, mWebsite, mDescription;

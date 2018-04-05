@@ -44,62 +44,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="This is a comment"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="15dp"
                 android:textColor="#000"
                 android:textSize="18sp"
                 android:layout_below="@+id/comment_username"
                 android:id="@+id/comment"/>
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="time"
-                android:textColor="#dedede"
-                android:textSize="14sp"
-                android:id="@+id/comment_time_posted"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_below="@+id/comment"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="X laughs"
-                android:textStyle="bold"
-                android:textColor="#dedede"
-                android:textSize="14sp"
-                android:id="@+id/comment_likes"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_below="@+id/comment"
-                android:layout_toRightOf="@+id/comment_time_posted"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reply"
-                android:textStyle="bold"
-                android:textColor="#dedede"
-                android:textSize="14sp"
-                android:id="@+id/comment_reply"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_below="@+id/comment"
-                android:layout_toRightOf="@+id/comment_likes"/>
-
-
         </RelativeLayout>
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:id="@+id/comment_like"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/ic_neutral"
-            android:layout_centerVertical="true"/>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="time"
+            android:textColor="#dedede"
+            android:textSize="14sp"
+            android:id="@+id/comment_time_posted"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
 

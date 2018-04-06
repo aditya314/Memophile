@@ -5,8 +5,10 @@ package com.example.android.memophile.Search;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,10 +20,15 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.android.memophile.Models.Photo;
 import com.example.android.memophile.Models.User;
+import com.example.android.memophile.Profile.ProfileActivity;
 import com.example.android.memophile.R;
 import com.example.android.memophile.Utils.BottomNavigationViewHelper;
 import com.example.android.memophile.Utils.UserListAdapter;
+import com.example.android.memophile.Utils.ViewCommentsFragment;
+import com.example.android.memophile.Utils.ViewPostFragment;
+import com.example.android.memophile.Utils.ViewProfileFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,7 +41,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class SearchActivity extends AppCompatActivity{
+public class SearchActivity extends AppCompatActivity {
+
     private static final int ACTIVITY_NUM = 1;
 
     private Context mContext = SearchActivity.this;
@@ -122,7 +130,10 @@ public class SearchActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //navigate to profile activity
-
+                Intent intent =  new Intent(SearchActivity.this, ProfileActivity.class);
+                intent.putExtra(getString(R.string.calling_activity), getString(R.string.search_activity));
+                intent.putExtra(getString(R.string.intent_user), mUserList.get(position));
+                startActivity(intent);
             }
         });
     }

@@ -7,6 +7,7 @@
     <string name="profile_fragment">Profile</string>
     <string name="view_post_fragment">View Post</string>
     <string name="view_comments_fragment">View Comments Fragment</string>
+    <string name="view_profile_fragment">View Profile Fragment</string>
 
     <!-- Firebase database fields -->
     <string name="dbname_users">users</string>
@@ -42,6 +43,7 @@
     <string name="calling_activity">calling_activity</string>
     <string name="selected_image">selected_image</string>
     <string name="return_to_fragment">return_to_fragment</string>
+    <string name="intent_user">intent_user</string>
 
     <!-- Bundle arg names -->
     <string name="activity_number">activity_number</string>
@@ -49,5 +51,6 @@
 
     <!-- activity names -->
     <string name="profile_activity">Profile Activity</string>
+    <string name="search_activity">Search Activity</string>
 
 </resources>

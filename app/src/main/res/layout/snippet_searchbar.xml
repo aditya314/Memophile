@@ -21,7 +21,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:hint="Search for users..."
+                    android:hint="Enter user_id to search..."
                     android:textSize="20sp"
                     android:textColor="#000"
                     android:id="@+id/search"

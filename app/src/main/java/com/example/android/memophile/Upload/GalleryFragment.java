@@ -106,6 +106,8 @@ public class GalleryFragment extends Fragment {
         if(FileSearch.getDirectoryPaths(filePaths.PICTURES) != null){
             directories = FileSearch.getDirectoryPaths(filePaths.PICTURES);
         }
+        directories.add(filePaths.CAMERA);
+        directories.add(filePaths.WHATSAPP);
 
         ArrayList<String> directoryNames = new ArrayList<>();
         for(int i = 0; i < directories.size(); i++){
@@ -114,8 +116,6 @@ public class GalleryFragment extends Fragment {
             String string = directories.get(i).substring(index+1);
             directoryNames.add(string);
         }
-
-        directories.add(filePaths.CAMERA);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, directoryNames);

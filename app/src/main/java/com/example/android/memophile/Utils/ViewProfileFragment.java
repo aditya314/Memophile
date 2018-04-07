@@ -69,9 +69,8 @@ public class ViewProfileFragment extends Fragment {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
 
-
     //widgets
-    private TextView mPosts, mFollowers, mFollowing, mDisplayName, mUsername, mWebsite, mDescription;
+    private TextView mPosts, mFollowers, mFollowing, mDisplayName, mUsername, mWebsite, mDescription, mFollow, mUnfollow ;
     private ProgressBar mProgressBar;
     private CircleImageView mProfilePhoto;
     private GridView gridView;
@@ -79,7 +78,7 @@ public class ViewProfileFragment extends Fragment {
     private ImageView profileMenu;
     private BottomNavigationViewEx bottomNavigationView;
     private Context mContext;
-
+    private TextView editProfile;
 
     //vars
     private User mUser;
@@ -102,6 +101,9 @@ public class ViewProfileFragment extends Fragment {
         toolbar = (Toolbar) view.findViewById(R.id.profileToolBar);
         profileMenu = (ImageView) view.findViewById(R.id.profileMenu);
         bottomNavigationView = (BottomNavigationViewEx) view.findViewById(R.id.bottomNavViewBar);
+        mFollow = (TextView) view.findViewById(R.id.follow);
+        mUnfollow = (TextView) view.findViewById(R.id.unfollow);
+        editProfile  = (TextView) view.findViewById(R.id.textEditProfile);
         mContext = getActivity();
 
         try{
@@ -116,8 +118,65 @@ public class ViewProfileFragment extends Fragment {
         setupToolbar();
         setupFirebaseAuth();
 
+        isFollowing();
+
+        mFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FirebaseDatabase.getInstance().getReference()
+                        .child(getString(R.string.dbname_following))
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child(mUser.getUser_id())
+                        .child(getString(R.string.field_user_id))
+                        .setValue(mUser.getUser_id());
+
+                FirebaseDatabase.getInstance().getReference()
+                        .child(getString(R.string.dbname_followers))
+                        .child(mUser.getUser_id())
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child(getString(R.string.field_user_id))
+                        .setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                setFollowing();
+            }
+        });
+
+
+        mUnfollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FirebaseDatabase.getInstance().getReference()
+                        .child(getString(R.string.dbname_following))
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child(mUser.getUser_id())
+                        .removeValue();
+
+                FirebaseDatabase.getInstance().getReference()
+                        .child(getString(R.string.dbname_followers))
+                        .child(mUser.getUser_id())
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .removeValue();
+                setUnfollowing();
+            }
+        });
+
+        //setupGridView();
+
+
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AccountSettingsActivity.class);
+                intent.putExtra(getString(R.string.calling_activity), getString(R.string.profile_activity));
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
+
+
 
     private void init(){
 
@@ -199,6 +258,48 @@ public class ViewProfileFragment extends Fragment {
         });
     }
 
+    private void isFollowing(){
+        setUnfollowing();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        Query query = reference.child(getString(R.string.dbname_following))
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .orderByChild(getString(R.string.field_user_id)).equalTo(mUser.getUser_id());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
+                    setFollowing();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    private void setFollowing(){
+        mFollow.setVisibility(View.GONE);
+        mUnfollow.setVisibility(View.VISIBLE);
+        editProfile.setVisibility(View.GONE);
+    }
+
+    private void setUnfollowing(){
+        mFollow.setVisibility(View.VISIBLE);
+        mUnfollow.setVisibility(View.GONE);
+        editProfile.setVisibility(View.GONE);
+    }
+
+    private void setCurrentUsersProfile(){
+        mFollow.setVisibility(View.GONE);
+        mUnfollow.setVisibility(View.GONE);
+        editProfile.setVisibility(View.VISIBLE);
+    }
+
     private void setupImageGrid(final ArrayList<Photo> photos){
         //setup our image grid
         int gridWidth = getResources().getDisplayMetrics().widthPixels;
@@ -216,8 +317,7 @@ public class ViewProfileFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //mOnGridImageSelectedListener.onGridImageSelected(photos.get(position), ACTIVITY_NUM);
-                Toast.makeText(mContext, "Working on this feature...", Toast.LENGTH_SHORT).show();
+                mOnGridImageSelectedListener.onGridImageSelected(photos.get(position), ACTIVITY_NUM);
             }
         });
     }

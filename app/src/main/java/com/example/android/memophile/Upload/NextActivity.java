@@ -62,7 +62,7 @@ public class NextActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 //upload the image to firebase
-                Toast.makeText(NextActivity.this, "Attempting to upload new photo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NextActivity.this, "Please stay still while we upload your meme", Toast.LENGTH_SHORT).show();
                 String caption = mCaption.getText().toString();
                 mFirebaseMethods.uploadNewPhoto(getString(R.string.new_photo), caption, imageCount, imgUrl);
 

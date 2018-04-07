@@ -23,7 +23,8 @@ import com.example.android.memophile.Utils.ViewProfileFragment;
 
 public class ProfileActivity extends AppCompatActivity
         implements ProfileFragment.OnGridImageSelectedListener,
-        ViewPostFragment.OnCommentThreadSelectedListener{
+        ViewPostFragment.OnCommentThreadSelectedListener,
+        ViewProfileFragment.OnGridImageSelectedListener{
 
     @Override
     public void onCommentThreadSelectedListener(Photo photo) {

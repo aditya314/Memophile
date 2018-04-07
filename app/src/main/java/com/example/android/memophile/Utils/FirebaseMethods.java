@@ -81,7 +81,7 @@ public class FirebaseMethods {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri firebaseUrl = taskSnapshot.getDownloadUrl();
 
-                    Toast.makeText(mContext, "photo upload success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Meme upload successful", Toast.LENGTH_SHORT).show();
 
                     //add the new photo to 'photos' node and 'user_photos' node
                     addPhotoToDatabase(caption, firebaseUrl.toString());
@@ -93,7 +93,7 @@ public class FirebaseMethods {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(mContext, "Photo upload failed ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Meme upload failed ", Toast.LENGTH_SHORT).show();
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -101,7 +101,7 @@ public class FirebaseMethods {
                     double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
 
                     if(progress - 15 > mPhotoUploadProgress){
-                        Toast.makeText(mContext, "photo upload progress: " + String.format("%.0f", progress) + "%", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Meme upload progress: " + String.format("%.0f", progress) + "%", Toast.LENGTH_SHORT).show();
                         mPhotoUploadProgress = progress;
                     }
                 }

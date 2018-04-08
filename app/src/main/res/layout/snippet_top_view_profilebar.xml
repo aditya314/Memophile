@@ -37,7 +37,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/backArrow"
                     android:textSize="20sp"
-                    android:textColor="#000"
+                    android:textColor="#D32F2F"
                     android:text="user_name"
                     android:layout_marginLeft="10dp" />
 

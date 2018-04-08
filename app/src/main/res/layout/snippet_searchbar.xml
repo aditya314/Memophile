@@ -23,7 +23,7 @@
                     android:layout_centerVertical="true"
                     android:hint="Enter user_id to search..."
                     android:textSize="20sp"
-                    android:textColor="#000"
+                    android:textColor="#8BC34A"
                     android:id="@+id/search"
                     android:background="@null"
                     android:layout_marginLeft="5dp" />

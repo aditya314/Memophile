@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:textColor="#000"
+            android:textColor="#8BC34A"
             android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="2dp"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:textColor="#000"
+            android:textColor="#8BC34A"
             android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="2dp"
@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:textColor="#000"
+            android:textColor="#8BC34A"
             android:textSize="18sp"
             android:layout_marginTop="2dp"
             app:layout_constraintTop_toTopOf="parent"
@@ -89,7 +89,7 @@
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:text="Edit your profile"
-            android:textColor="#000"
+            android:textColor="#212121"
             android:textSize="14sp"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/textFollowers"
@@ -101,7 +101,7 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintVertical_bias="0.0"
             android:textAlignment="center"
-            android:background="#abcdef"/>
+            android:background="#FFCDD2"/>
     </android.support.constraint.ConstraintLayout>
 
 

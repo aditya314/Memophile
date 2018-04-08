@@ -46,7 +46,7 @@
                     android:hint="Write a description..."
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
-                    android:background="@null"
+                    android:background="#FFFFFF"
                     />
 
             </RelativeLayout>

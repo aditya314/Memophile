@@ -12,7 +12,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="20dp"
         android:src="@drawable/ic_action_name"
-        app:civ_border_color="#000"
+        app:civ_border_color="#D32F2F"
         app:civ_border_width="0.5dp"/>
 
     <RelativeLayout
@@ -36,7 +36,7 @@
                 android:text="user_name"
                 android:id="@+id/comment_username"
                 android:layout_marginLeft="15dp"
-                android:textColor="#000"
+                android:textColor="#D32F2F"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -56,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="time"
-            android:textColor="#dedede"
+            android:textColor="#8BC34A"
             android:textSize="14sp"
             android:id="@+id/comment_time_posted"
             android:layout_marginTop="15dp"

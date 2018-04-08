@@ -13,7 +13,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tabs"
-                android:background="#d3d3d3">
+                android:background="#F44336">
 
 
             </android.support.design.widget.TabLayout>

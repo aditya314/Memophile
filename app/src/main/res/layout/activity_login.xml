@@ -63,9 +63,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            android:text="No account yet? Create one"
+            android:text="New? Click here to create an account"
             android:gravity="center"
-            android:textSize="16dp"
+            android:textSize="20dp"
             android:id="@+id/link_signup"
             android:textColor="#00f"/>
 
@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Please wait..."
-        android:textColor="#000"
+        android:textColor="#8BC34A"
         android:textSize="20sp"
         android:layout_alignBottom="@+id/progressBar"
         android:layout_alignRight="@+id/progressBar"

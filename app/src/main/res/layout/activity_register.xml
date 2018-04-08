@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="JOIN THE MEME NETWORK"
             android:textSize="20sp"
-            android:textColor="#000"
+            android:textColor="#F44336"
             android:gravity="center_horizontal"
             android:layout_marginBottom="40dp"/>
 
@@ -91,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Please wait..."
-        android:textColor="#000"
+        android:textColor="#8BC34A"
         android:textSize="20sp"
         android:layout_alignBottom="@+id/progressBar"
         android:layout_alignRight="@+id/progressBar"

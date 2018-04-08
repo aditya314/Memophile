@@ -33,7 +33,7 @@
                     android:layout_toRightOf="@+id/backArrow"
                     android:layout_marginLeft="30dp"
                     android:text="Photo"
-                    android:textColor="#000"
+                    android:textColor="#D32F2F"
                     android:id="@+id/tvBackLabel"/>
 
 

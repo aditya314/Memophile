@@ -4,7 +4,7 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#dedede"
+        android:background="#8BC34A"
         >
 
         <android.support.v7.widget.Toolbar

@@ -30,7 +30,7 @@
                     android:layout_toRightOf="@+id/ivCloseShare"
                     android:id="@+id/spinnerDirectory"
                     android:textSize="20sp"
-                    android:textColor="#000"
+                    android:textColor="#F44336"
                     android:text="Gallery"
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical">
@@ -45,14 +45,10 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="15dp"
                     android:textSize="20sp"
-                    android:textColor="#00f"
+                    android:textColor="#8BC34A"
                     android:layout_centerVertical="true"
                     android:id="@+id/tvNext"
                     />
-
-
-
-
             </RelativeLayout>
 
 

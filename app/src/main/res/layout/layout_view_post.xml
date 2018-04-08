@@ -41,16 +41,6 @@
                     android:textColor="#000"
                     />
 
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_ellipses"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:id="@+id/ivEllipses"/>
-
             </RelativeLayout>
 
             <ImageView

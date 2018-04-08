@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.android.memophile.Home.HomeActivity;
 import com.example.android.memophile.Models.Comment;
 import com.example.android.memophile.Models.Photo;
 import com.example.android.memophile.R;
@@ -102,10 +103,31 @@ public class ViewCommentsFragment extends Fragment {
         mBackArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().popBackStack();
+                if(getCallingActivityFromBundle().equals(getString(R.string.home_activity))){
+                    getActivity().getSupportFragmentManager().popBackStack();
+                    ((HomeActivity)getActivity()).showLayout();
+                }
+                else{
+                    getActivity().getSupportFragmentManager().popBackStack();
+                }
+
             }
         });
     }
+
+    /**
+     * retrieve the photo from the incoming bundle from profileActivity interface
+     * @return
+     */
+     private String getCallingActivityFromBundle(){
+         Bundle bundle = this.getArguments();
+         if(bundle != null) {
+            return bundle.getString(getString(R.string.home_activity));
+         }else{
+             return null;
+         }
+     }
+
 
     private void closeKeyboard(){
         View view = getActivity().getCurrentFocus();

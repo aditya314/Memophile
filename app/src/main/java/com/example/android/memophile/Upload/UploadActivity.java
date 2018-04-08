@@ -48,7 +48,7 @@ public class UploadActivity extends AppCompatActivity{
         SectionsPagerAdapter adapter =  new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new GalleryFragment());
 
-        mViewPager = findViewById(R.id.container);
+        mViewPager = findViewById(R.id.viewpager_container);
         mViewPager.setAdapter(adapter);
 
         TabLayout tabLayout = findViewById(R.id.tabsBottom);

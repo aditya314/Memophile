@@ -54,5 +54,6 @@
     <!-- activity names -->
     <string name="profile_activity">Profile Activity</string>
     <string name="search_activity">Search Activity</string>
+    <string name="home_activity">Home Activity</string>
 
 </resources>

@@ -20,7 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Like.LikeActivity" />
         <activity android:name=".Profile.ProfileActivity" />
         <activity android:name=".Search.SearchActivity" />
         <activity android:name=".Upload.UploadActivity" />

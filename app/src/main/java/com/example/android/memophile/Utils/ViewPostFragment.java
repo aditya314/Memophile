@@ -97,7 +97,6 @@ public class ViewPostFragment extends Fragment {
         mCaption = (TextView) view.findViewById(R.id.image_caption);
         mUsername = (TextView) view.findViewById(R.id.username);
         mTimestamp = (TextView) view.findViewById(R.id.image_time_posted);
-        mEllipses = (ImageView) view.findViewById(R.id.ivEllipses);
         mHeartRed = (ImageView) view.findViewById(R.id.image_heart_red);
         mHeartWhite = (ImageView) view.findViewById(R.id.image_heart);
         mProfileImage = (ImageView) view.findViewById(R.id.profile_photo);

@@ -10,11 +10,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.android.memophile.Models.User;
 import com.example.android.memophile.R;
 import com.example.android.memophile.Models.Photo;
 import com.example.android.memophile.Utils.ViewCommentsFragment;
 import com.example.android.memophile.Utils.ViewPostFragment;
 import com.example.android.memophile.Utils.ViewProfileFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 /**
@@ -59,16 +61,25 @@ public class ProfileActivity extends AppCompatActivity
         Intent intent = getIntent();
         if(intent.hasExtra(getString(R.string.calling_activity))){
             if(intent.hasExtra(getString(R.string.intent_user))){
-                ViewProfileFragment fragment = new ViewProfileFragment();
-                Bundle args = new Bundle();
-                args.putParcelable(getString(R.string.intent_user),
-                        intent.getParcelableExtra(getString(R.string.intent_user)));
-                fragment.setArguments(args);
+                User user = intent.getParcelableExtra(getString(R.string.intent_user));
+                if(!user.getUser_id().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                    ViewProfileFragment fragment = new ViewProfileFragment();
+                    Bundle args = new Bundle();
+                    args.putParcelable(getString(R.string.intent_user),
+                            intent.getParcelableExtra(getString(R.string.intent_user)));
+                    fragment.setArguments(args);
 
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.container, fragment);
-                transaction.addToBackStack(getString(R.string.view_profile_fragment));
-                transaction.commit();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.container, fragment);
+                    transaction.addToBackStack(getString(R.string.view_profile_fragment));
+                    transaction.commit();
+                }else{
+                    ProfileFragment fragment = new ProfileFragment();
+                    FragmentTransaction transaction = ProfileActivity.this.getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.container, fragment);
+                    transaction.addToBackStack(getString(R.string.profile_fragment));
+                    transaction.commit();
+                }
             }else{
                 Toast.makeText(mContext, "Something went wrong!", Toast.LENGTH_SHORT).show();
             }
